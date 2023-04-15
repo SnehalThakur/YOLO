@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 8
+names: ['bottle', 'can', 'carton', 'cigarette', 'cup', 'paper', 'plastic', 'straw']
+
+roboflow:
+  workspace: yolomultibleclassesthree-l59kb
+  project: streettrash
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolomultibleclassesthree-l59kb/streettrash/dataset/1

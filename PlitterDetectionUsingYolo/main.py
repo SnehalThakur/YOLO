@@ -1,29 +1,43 @@
-# This is a sample Python script.
+import streamlit as st
+import numpy as np
+from PIL import Image, ImageOps  # Streamlit works with PIL library very easily for Images
+import cv2
+from ultralytics import YOLO
+import os
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+st.title("Litter Detection using Yolo V8")
 
-from roboflow import Roboflow
-rf = Roboflow(api_key="IaWy30TbFdzY7d4uL4e5")
-project = rf.workspace().project("merged-lrbku")
-model = project.version(1).model
+option = st.selectbox("Select the option for Litter Detection: ", ["Image", 'Video', 'Camera'])
+'''
+#video file
+python yolo\v8\detect\detect_and_trk.py model=yolov8s.pt source="test.mp4" show=True
 
-# infer on a local image
-print(model.predict("roboflow/valid/images/000000_jpg.rf.04434e2c2a365134dae465c44fc51c52.jpg", confidence=40, overlap=30).json())
+#imagefile
+python yolo\v8\detect\detect_and_trk.py model=yolov8m.pt source="path to image"
 
-# visualize your prediction
-# model.predict("your_image.jpg", confidence=40, overlap=30).save("prediction.jpg")
+#Webcam
+python yolo\v8\detect\detect_and_trk.py model=yolov8m.pt source=0 show=True
 
-# infer on an image hosted elsewhere
-# print(model.predict("URL_OF_YOUR_IMAGE", hosted=True, confidence=40, overlap=30).json())
+#External Camera
+python yolo\v8\detect\detect_and_trk.py model=yolov8m.pt source=1 show=True
+'''
+model = YOLO(r"litterDetectionCustomModelV8.pt")
+model = model.predict(r"C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\datasets\valid\images\000101_JPG_jpg.rf.2d6a1751dd92974abbf7c50d97eb714d.jpg", show=True, save=True, hide_labels=False, hide_conf=False, save_txt=True, conf=0.5, line_thickness=3)
+model
+if option == "Image":
+    uploaded_image = st.file_uploader('Upload an Trash Image', type=['jpg', 'png', 'jpeg'])
+    if uploaded_image \
+            is not None:
+        img = Image.open(uploaded_image)
+        st.image(img, caption='Uploaded Image', width=300)
+        if st.button('Detect'):
+            path_dir = os.path.join(os.getcwd(), 'upload')
+            print("path_dir =", path_dir)
+            upload_path = os.path.join(path_dir, uploaded_image.name)
+            print("upload_path=", upload_path)
+            st.title("result")
 
-# def print_hi(name):
-#     # Use a breakpoint in the code line below to debug your script.
-#     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-#
-#
-# # Press the green button in the gutter to run the script.
-# if __name__ == '__main__':
-#     print_hi('PyCharm')
+elif option == "Video":
+    uploaded_video = st.file_uploader("Upload Video", type=['mp4', 'mpeg', 'mov'])
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+

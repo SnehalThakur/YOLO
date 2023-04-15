@@ -1,0 +1,357 @@
+(PlitterDetectionUsingYolo) C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo>yolo task=detect mode=train model=yolov8m.pt data=data.yaml epochs=25 imgsz=640 plots=True batch=8
+
+Downloading https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8m.pt to yolov8m.pt...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 49.7M/49.7M [00:06<00:00, 8.06MB/s]
+
+Ultralytics YOLOv8.0.20  Python-3.9.16 torch-2.0.0+cu117 CUDA:0 (NVIDIA GeForce RTX 3060 Laptop GPU, 6144MiB)
+yolo\engine\trainer: task=detect, mode=train, model=yolov8m.yaml, data=data.yaml, epochs=25, patience=50, batch=8, imgsz=640, save=True, cache=False, device=, workers=8, project=None, 
+name=None, exist_ok=False, pretrained=False, optimizer=SGD, verbose=True, seed=0, deterministic=True, single_cls=False, image_weights=False, rect=False, cos_lr=False, close_mosaic=10, 
+resume=False, overlap_mask=True, mask_ratio=4, dropout=False, val=True, save_json=False, save_hybrid=False, conf=0.001, iou=0.7, max_det=300, half=False, dnn=False, plots=True, source=
+ultralytics/assets/, show=False, save_txt=False, save_conf=False, save_crop=False, hide_labels=False, hide_conf=False, vid_stride=1, line_thickness=3, visualize=False, augment=False, a
+gnostic_nms=False, classes=None, retina_masks=False, boxes=True, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=False, opset=17, workspace=4, nms=
+False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.001, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, fl_gamma=0.0, label_smoothing=0.0,
+ nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.9, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.1, copy_paste=0.1, cfg=None, v5loader=False, save_dir=runs\detect\train2
+Overriding model.yaml nc=80 with nc=8
+
+                   from  n    params  module                                       arguments
+  0                  -1  1      1392  ultralytics.nn.modules.Conv                  [3, 48, 3, 2]
+  1                  -1  1     41664  ultralytics.nn.modules.Conv                  [48, 96, 3, 2]
+  2                  -1  2    111360  ultralytics.nn.modules.C2f                   [96, 96, 2, True]
+  3                  -1  1    166272  ultralytics.nn.modules.Conv                  [96, 192, 3, 2]
+  4                  -1  4    813312  ultralytics.nn.modules.C2f                   [192, 192, 4, True]
+  5                  -1  1    664320  ultralytics.nn.modules.Conv                  [192, 384, 3, 2]
+  6                  -1  4   3248640  ultralytics.nn.modules.C2f                   [384, 384, 4, True]           
+  7                  -1  1   1991808  ultralytics.nn.modules.Conv                  [384, 576, 3, 2]              
+  8                  -1  2   3985920  ultralytics.nn.modules.C2f                   [576, 576, 2, True]           
+  9                  -1  1    831168  ultralytics.nn.modules.SPPF                  [576, 576, 5]
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.Concat                [1]
+ 12                  -1  2   1993728  ultralytics.nn.modules.C2f                   [960, 384, 2]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.Concat                [1]
+ 15                  -1  2    517632  ultralytics.nn.modules.C2f                   [576, 192, 2]
+ 16                  -1  1    332160  ultralytics.nn.modules.Conv                  [192, 192, 3, 2]
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.Concat                [1]
+ 18                  -1  2   1846272  ultralytics.nn.modules.C2f                   [576, 384, 2]                 
+ 19                  -1  1   1327872  ultralytics.nn.modules.Conv                  [384, 384, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.Concat                [1]
+ 21                  -1  2   4207104  ultralytics.nn.modules.C2f                   [960, 576, 2]                 
+ 22        [15, 18, 21]  1   3780328  ultralytics.nn.modules.Detect                [8, [192, 384, 576]]          
+Model summary: 295 layers, 25860952 parameters, 25860936 gradients, 79.1 GFLOPs
+
+Transferred 469/475 items from pretrained weights
+optimizer: SGD(lr=0.01) with parameter groups 77 weight(decay=0.0), 84 weight(decay=0.001), 83 bias
+train: Scanning C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\train\labels... 437 images, 0 backgrounds, 0 corrupt: 100%|██████████| 437/437 [00:00<00:00, 2338.41it/s]
+train: New cache created: C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\train\labels.cache
+WARNING  Box and segment counts should be equal, but got len(segments) = 10, len(boxes) = 451. To resolve this only boxes will be used and all segments will be removed. To avoid this please supply either a detect or segment dataset, not a detect-segment mixed dataset.
+val: Scanning C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\valid\labels... 125 images, 0 backgrounds, 0 corrupt: 100%|██████████| 125/125 [00:00<00:00, 2531.85it/s]
+val: New cache created: C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\valid\labels.cache
+Image sizes 640 train, 640 val
+Using 8 dataloader workers
+Logging results to runs\detect\train2
+Starting training for 25 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/25      3.57G     0.8115      3.192      1.218         10        640: 100%|██████████| 55/55 [00:37<00:00,  1.47it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.87s/it]
+                   all        125        132      0.372       0.45      0.285      0.237
+                bottle        125         11      0.151      0.273      0.157      0.147
+                   can        125         12      0.186      0.333      0.184      0.177
+                carton        125         24       0.38      0.417      0.349      0.308
+             cigarette        125          6          1          0          0          0
+                   cup        125         12      0.277      0.667      0.481      0.308
+                 paper        125         29      0.296      0.828      0.374      0.316
+               plastic        125         38      0.315      0.632      0.449      0.404
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/25      4.48G     0.7796      1.908      1.199          6        640: 100%|██████████| 55/55 [00:38<00:00,  1.42it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.91s/it]
+                   all        125        132      0.543      0.437      0.384      0.312
+                bottle        125         11      0.214      0.182     0.0975     0.0915
+                   can        125         12      0.291      0.583      0.411      0.375
+                carton        125         24      0.443      0.542       0.49      0.418
+             cigarette        125          6          1          0          0          0
+                   cup        125         12      0.758       0.75      0.756      0.534
+                 paper        125         29      0.499       0.69      0.578      0.458
+               plastic        125         38      0.599      0.316      0.354      0.306
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/25      4.48G     0.7394      1.724      1.144         11        640: 100%|██████████| 55/55 [00:37<00:00,  1.46it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.92s/it]
+                   all        125        132       0.77      0.394      0.461      0.383
+                bottle        125         11       0.46      0.182      0.145      0.131
+                   can        125         12      0.944       0.25      0.398       0.36
+                carton        125         24      0.812       0.54      0.654      0.543
+             cigarette        125          6          1          0          0          0
+                   cup        125         12          1      0.673      0.811      0.636
+                 paper        125         29      0.461      0.586      0.607      0.454
+               plastic        125         38      0.712      0.526      0.608      0.555
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/25      4.48G     0.8132        1.7       1.15         17        640: 100%|██████████| 55/55 [00:38<00:00,  1.43it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.91s/it]
+                   all        125        132      0.512      0.313      0.319      0.258
+                bottle        125         11     0.0965      0.273      0.173     0.0955
+                   can        125         12          1          0     0.0966     0.0714
+                carton        125         24      0.269      0.337      0.439      0.375
+             cigarette        125          6          1          0          0          0
+                   cup        125         12      0.262       0.75      0.601       0.46
+                 paper        125         29      0.489      0.276      0.345      0.295
+               plastic        125         38      0.467      0.553      0.581      0.507
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/25      4.48G     0.8785      1.644       1.21         14        640: 100%|██████████| 55/55 [00:37<00:00,  1.46it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.90s/it]
+                   all        125        132      0.443      0.314      0.258       0.18
+                bottle        125         11      0.219     0.0909      0.144     0.0983
+                   can        125         12      0.217      0.333      0.234      0.143
+                carton        125         24       0.43      0.333      0.339       0.27
+             cigarette        125          6          1          0          0          0
+                   cup        125         12      0.549        0.5      0.426      0.305
+                 paper        125         29      0.343      0.306      0.313      0.188
+               plastic        125         38      0.346      0.632      0.352      0.253
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/25      4.48G     0.8925      1.565      1.204         12        640: 100%|██████████| 55/55 [00:38<00:00,  1.43it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.89s/it]
+                   all        125        132      0.415      0.286      0.244      0.185
+                bottle        125         11     0.0257     0.0909     0.0321     0.0181
+                   can        125         12      0.113        0.5       0.27      0.214
+                carton        125         24      0.558      0.211      0.325      0.274
+             cigarette        125          6          1          0          0          0
+                   cup        125         12      0.409        0.5       0.51      0.401
+                 paper        125         29      0.525      0.172      0.259      0.143
+               plastic        125         38      0.273      0.526      0.311      0.246
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/25      4.48G     0.9149      1.584      1.204         19        640: 100%|██████████| 55/55 [00:37<00:00,  1.45it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.92s/it]
+                   all        125        132      0.651      0.356      0.402       0.33
+                bottle        125         11      0.393     0.0909      0.115      0.106
+                   can        125         12      0.709       0.25      0.392      0.323
+                carton        125         24      0.309      0.503      0.386      0.289
+             cigarette        125          6          1          0     0.0934     0.0363
+                   cup        125         12          1      0.499      0.678      0.567
+                 paper        125         29      0.405      0.621      0.479      0.386
+               plastic        125         38      0.739      0.526      0.674      0.605
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/25      4.48G     0.9086      1.525      1.231          9        640: 100%|██████████| 55/55 [00:38<00:00,  1.45it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.96s/it]
+                   all        125        132      0.597      0.354      0.414      0.344
+                bottle        125         11      0.483      0.172      0.114     0.0951
+                   can        125         12      0.188      0.167      0.283      0.249
+                carton        125         24      0.596      0.542      0.566      0.476
+             cigarette        125          6          1          0      0.121     0.0477
+                   cup        125         12      0.444       0.75      0.616      0.552
+                 paper        125         29      0.613      0.379      0.473      0.343
+               plastic        125         38      0.856       0.47      0.723      0.643
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/25      4.48G     0.8753      1.425      1.204         15        640: 100%|██████████| 55/55 [00:38<00:00,  1.42it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.88s/it]
+                   all        125        132      0.571      0.348      0.384      0.306
+                bottle        125         11      0.362      0.182       0.15      0.128
+                   can        125         12      0.547      0.167      0.329      0.267
+                carton        125         24      0.782        0.3      0.602      0.499
+             cigarette        125          6          1          0     0.0108    0.00583
+                   cup        125         12      0.437      0.713      0.617       0.41
+                 paper        125         29      0.394      0.414      0.395      0.327
+               plastic        125         38      0.477      0.658      0.588      0.504
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/25      4.48G     0.9451      1.489      1.242         10        640: 100%|██████████| 55/55 [00:38<00:00,  1.45it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.88s/it]
+                   all        125        132      0.538      0.431      0.383        0.3
+                bottle        125         11      0.504      0.455      0.396      0.265
+                   can        125         12       0.19      0.583      0.204      0.174
+                carton        125         24      0.549      0.406      0.525      0.442
+             cigarette        125          6          1          0     0.0113    0.00454
+                   cup        125         12      0.653      0.667      0.745      0.563
+                 paper        125         29      0.325      0.515      0.336      0.267
+               plastic        125         38      0.547      0.395       0.46      0.384
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/25      4.48G     0.8905      1.363      1.185         16        640: 100%|██████████| 55/55 [00:39<00:00,  1.41it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.87s/it]
+                   all        125        132      0.566      0.295      0.372      0.294
+                bottle        125         11      0.165     0.0909      0.121     0.0735
+                   can        125         12      0.285      0.167      0.242      0.203
+                carton        125         24      0.827        0.5      0.667      0.533
+             cigarette        125          6          1          0     0.0404     0.0121
+                   cup        125         12      0.849        0.5      0.677      0.522
+                 paper        125         29      0.382      0.172      0.311      0.252
+               plastic        125         38      0.453      0.632      0.547      0.458
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/25      4.48G     0.9058      1.304      1.192         13        640: 100%|██████████| 55/55 [00:38<00:00,  1.41it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.86s/it]
+                   all        125        132      0.598      0.281      0.363       0.29
+                bottle        125         11      0.257     0.0909     0.0567     0.0422
+                   can        125         12      0.441       0.25      0.243      0.204
+                carton        125         24      0.797      0.328      0.605      0.461
+             cigarette        125          6          1          0     0.0496     0.0158
+                   cup        125         12      0.534        0.5      0.588      0.498
+                 paper        125         29      0.604      0.138      0.393      0.289
+               plastic        125         38      0.551      0.658      0.609      0.518
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/25      4.48G     0.8575      1.262      1.164         10        640: 100%|██████████| 55/55 [00:36<00:00,  1.49it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:16<00:00,  2.01s/it]
+                   all        125        132      0.535      0.427       0.44      0.362
+                bottle        125         11      0.189      0.182      0.142     0.0894
+                   can        125         12      0.329      0.583      0.482      0.425
+                carton        125         24      0.488      0.542      0.629      0.524
+             cigarette        125          6          1          0      0.038     0.0149
+                   cup        125         12      0.726      0.583       0.71      0.574
+                 paper        125         29      0.488      0.414      0.445      0.364
+               plastic        125         38      0.523      0.684      0.632      0.545
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/25      4.48G     0.8589      1.209      1.194         20        640: 100%|██████████| 55/55 [00:38<00:00,  1.41it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.87s/it]
+                   all        125        132      0.502      0.431       0.46      0.368
+                bottle        125         11      0.151     0.0909      0.125     0.0975
+                   can        125         12      0.396      0.328      0.424      0.368
+                carton        125         24      0.698      0.542      0.617       0.48
+             cigarette        125          6          1          0      0.162     0.0394
+                   cup        125         12      0.448      0.667      0.677      0.533
+                 paper        125         29      0.371       0.65      0.524      0.433
+               plastic        125         38       0.45      0.737      0.695      0.623
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/25      4.48G     0.7953      1.088      1.137         16        640: 100%|██████████| 55/55 [00:36<00:00,  1.50it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.89s/it]
+                   all        125        132      0.661      0.435        0.5      0.408
+                bottle        125         11      0.589      0.273      0.266      0.196
+                   can        125         12      0.517      0.417      0.452      0.366
+                carton        125         24      0.729      0.561      0.707      0.586
+             cigarette        125          6          1          0     0.0908     0.0344
+                   cup        125         12      0.494      0.815      0.732      0.626
+                 paper        125         29      0.598      0.345      0.512      0.396
+               plastic        125         38      0.699      0.632      0.741      0.652
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      16/25      4.48G     0.7384      1.184      1.135          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.30it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.85s/it]
+                   all        125        132      0.553      0.434      0.425      0.355
+                bottle        125         11      0.272      0.182      0.153       0.11
+                   can        125         12      0.413      0.417      0.411      0.333
+                carton        125         24      0.501      0.708      0.654      0.573
+             cigarette        125          6          1          0     0.0194     0.0114
+                   cup        125         12      0.658      0.483      0.575      0.472
+                 paper        125         29      0.546      0.517      0.486      0.377
+               plastic        125         38       0.48      0.729      0.678      0.609
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      17/25      4.48G     0.6793      1.033      1.085          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.35it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.86s/it]
+                   all        125        132       0.63       0.42      0.491      0.397
+                bottle        125         11      0.302      0.182      0.237      0.191
+                   can        125         12       0.66      0.333      0.466      0.355
+                carton        125         24      0.606      0.667      0.656      0.577
+             cigarette        125          6          1          0     0.0971     0.0362
+                   cup        125         12      0.853      0.487      0.739       0.59
+                 paper        125         29      0.481      0.552      0.586      0.435
+               plastic        125         38      0.504      0.722      0.653      0.594
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      18/25      4.48G     0.6687     0.9286      1.114          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.36it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.84s/it]
+                   all        125        132      0.514       0.48      0.465      0.381
+                bottle        125         11      0.195      0.273      0.202      0.148
+                   can        125         12      0.526      0.417      0.485      0.374
+                carton        125         24       0.48      0.583      0.687      0.618
+             cigarette        125          6          1          0     0.0336     0.0235
+                   cup        125         12      0.456      0.833      0.684      0.547
+                 paper        125         29      0.437      0.552      0.527       0.42
+               plastic        125         38      0.506      0.701      0.635       0.54
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      19/25      4.48G     0.6538     0.9513       1.09          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.35it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.89s/it]
+                   all        125        132      0.457      0.461      0.502      0.405
+                bottle        125         11      0.242      0.235      0.168      0.124
+                   can        125         12      0.459        0.5      0.426      0.343
+                carton        125         24      0.593      0.708      0.738       0.61
+             cigarette        125          6          0          0      0.144     0.0649
+                   cup        125         12      0.717      0.667      0.766      0.655
+                 paper        125         29      0.551      0.414      0.558      0.431
+               plastic        125         38       0.64      0.701      0.713      0.604
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      20/25      4.48G     0.6439     0.9202      1.081          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.36it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.86s/it]
+                   all        125        132      0.386      0.555      0.496      0.404
+                bottle        125         11      0.247      0.358      0.176      0.141
+                   can        125         12      0.377        0.5      0.438      0.366
+                carton        125         24      0.488       0.75        0.7      0.577
+             cigarette        125          6          0          0     0.0826     0.0335
+                   cup        125         12      0.713      0.667      0.693      0.551
+                 paper        125         29      0.439      0.759      0.627      0.529
+               plastic        125         38      0.441       0.85      0.756      0.632
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      21/25      4.48G     0.6312     0.8878      1.067          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.30it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.86s/it]
+                   all        125        132      0.718      0.431       0.52      0.421
+                bottle        125         11      0.318      0.273      0.196      0.171
+                   can        125         12      0.678      0.417      0.492      0.416
+                carton        125         24      0.907      0.406      0.685      0.522
+             cigarette        125          6          1          0      0.161     0.0577
+                   cup        125         12      0.832       0.75      0.774      0.671
+                 paper        125         29      0.577      0.586      0.639      0.543
+               plastic        125         38      0.712      0.586      0.692      0.568
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      22/25      4.48G     0.5905     0.7866      1.058          4        640: 100%|██████████| 55/55 [00:16<00:00,  3.28it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.84s/it]
+                   all        125        132      0.679      0.521      0.591       0.46
+                bottle        125         11      0.425      0.455      0.317      0.257
+                   can        125         12      0.617      0.583      0.494      0.421
+                carton        125         24       0.63       0.64       0.77      0.585
+             cigarette        125          6          1          0      0.404      0.158
+                   cup        125         12      0.795      0.649      0.795      0.628
+                 paper        125         29      0.617      0.586      0.567      0.489
+               plastic        125         38      0.667      0.737       0.79      0.684
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      23/25      4.48G     0.5851     0.7607      1.041          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.27it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.85s/it]
+                   all        125        132      0.729      0.492      0.581      0.468
+                bottle        125         11      0.399      0.364      0.259      0.204
+                   can        125         12      0.816        0.5      0.551      0.509
+                carton        125         24      0.701      0.667      0.739      0.599
+             cigarette        125          6          1          0      0.338      0.137
+                   cup        125         12      0.856      0.583      0.834      0.666
+                   cup        125         12      0.856      0.583      0.834      0.666
+                 paper        125         29      0.734      0.517      0.559      0.468
+               plastic        125         38      0.597      0.816       0.79      0.693
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      24/25      4.48G     0.5321     0.6612      1.024          6        640: 100%|██████████| 55/55 [00:16<00:00,  3.27it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:14<00:00,  1.86s/it]
+                   all        125        132      0.709      0.484      0.564       0.48
+                bottle        125         11      0.264      0.364      0.192      0.144
+                   can        125         12      0.658        0.5      0.558      0.518
+                carton        125         24      0.807      0.524      0.709      0.606
+             cigarette        125          6          1          0      0.211     0.0839
+                   cup        125         12      0.916       0.75       0.87      0.765
+                 paper        125         29      0.588      0.541      0.622      0.548
+               plastic        125         38      0.729      0.711      0.785      0.695
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      25/25      4.48G     0.5495     0.6278      1.008          5        640: 100%|██████████| 55/55 [00:16<00:00,  3.35it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 8/8 [00:15<00:00,  1.88s/it]
+                   all        125        132      0.552      0.565      0.568      0.485
+                bottle        125         11      0.276      0.455      0.263      0.197
+                   can        125         12       0.62      0.546      0.583      0.546
+                   can        125         12       0.62      0.547      0.583      0.546
+                carton        125         24      0.819      0.625      0.682      0.576
+             cigarette        125          6          0          0      0.123     0.0476
+                   cup        125         12      0.902      0.833      0.889      0.759
+                 paper        125         29       0.63      0.704      0.642      0.568
+               plastic        125         38      0.618      0.789      0.794      0.707
+Speed: 0.5ms pre-process, 10.7ms inference, 0.0ms loss, 2.4ms post-process per image
+Results saved to runs\detect\train2

@@ -1,7 +1,8 @@
 from ultralytics import YOLO
 
 model = YOLO(r"litterDetectionCustomModelV8.pt")
-model.predict(r"C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\datasets\test\images\IMG_20220618_122620_jpg.rf.94a9bdf9280de1913b11c0b42f9d6a25.jpg", show=True, save=True, hide_labels=False, hide_conf=False, save_txt=True, conf=0.5, line_thickness=3)
+model = model.predict(r"C:\Users\snehal\PycharmProjects\PlitterDetectionUsingYolo\datasets\valid\images\000101_JPG_jpg.rf.2d6a1751dd92974abbf7c50d97eb714d.jpg", show=True, save=True, hide_labels=False, hide_conf=False, save_txt=True, conf=0.5, line_thickness=3)
+print(model)
 # model.train(data="datasets/data.yaml", epochs=50)
 
 
